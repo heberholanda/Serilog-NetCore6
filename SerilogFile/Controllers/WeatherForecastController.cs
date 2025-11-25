@@ -21,6 +21,7 @@ namespace SerilogFile.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            // Registra uma mensagem informativa no log usando Serilog
             _logger.LogInformation("Testing Serilog File");
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast

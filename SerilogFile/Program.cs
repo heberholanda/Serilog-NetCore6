@@ -2,11 +2,14 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configura o Serilog como logger principal da aplicação
+// CreateBootstrapLogger cria um logger inicial para capturar logs durante a inicialização
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateBootstrapLogger();
 
+// Integra o Serilog com o host do ASP.NET Core
+// ReadFrom.Configuration permite configurar o Serilog através do appsettings.json
 builder.Host.UseSerilog((context, logConfiguration) => logConfiguration
     .WriteTo.Console()
     .ReadFrom.Configuration(context.Configuration));
